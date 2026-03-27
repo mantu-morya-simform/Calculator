@@ -1,0 +1,229 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: var(--bg-app);
+}
+
+.app {
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+  min-height: 600px;
+  height: auto;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 100%;
+  column-gap: 20px;
+  background: var(--bg-calculator);
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+/* left Part Style */
+
+.calculator {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  font-size: larger;
+  background: var(--bg-calculator);
+}
+
+.calculator__header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heading__wrapper h1 {
+  font-size: 28px;
+}
+
+.calculator__display {
+  width: 100%;
+  height: 100%;
+  font-size: var(--display-text-size);
+  color: var(--text-inverse);
+  padding: 10px;
+  border-radius: var(--btn-radius);
+  border: none;
+  outline: none;
+  background: var(--display-bg);
+  text-align: right;
+}
+
+.calculator__display::placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.7;
+  font-weight: bold;
+  text-align: right;
+}
+
+.calculator__memory,
+.calculator__modes {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.calculator__memory button,
+.calculator__modes button,
+.calculator__keypad button {
+  border: none;
+  background: var(--bg-button);
+  padding: var(--btn-padding);
+  cursor: pointer;
+  border-radius: var(--btn-radius);
+  color: var(--text-inverse);
+  size: var(--btn-size);
+  transition: 0.2s ease;
+}
+
+.calculator__memory button:hover,
+.calculator__modes button:hover,
+.calculator__keypad button:hover {
+  background: var(--bg-button-hover);
+}
+
+.calculator__keypad {
+  padding: 5px;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 5px;
+  column-gap: 5px;
+}
+
+.calculator__keypad.sidebar-open {
+  display: none;
+}
+
+.calculator__keypad button {
+  min-height: 40px;
+  font-weight: var(--font-bold);
+}
+
+/* more button style */
+
+.heading__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.more__logo,
+.more__logo__btn {
+  height: 30px;
+  width: 30px;
+  border: none;
+  background: var(--bg-calculator);
+  cursor: pointer;
+}
+
+/* Calculator modes btn and svg Style */
+
+.functions__logo,
+.trigonometry__logo,
+.drop-down__logo {
+  height: 20px;
+  width: 20px;
+}
+
+.btn-modes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-modes:hover + .dropdown__options {
+  display: flex;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown__options {
+  min-width: 100px;
+  z-index: 5;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: var(--btn-padding);
+  gap: var(--space-1);
+  background: var(--bg-button);
+  border-radius: var(--btn-radius);
+  background: var(--bg-app);
+}
+
+.dropdown:hover .dropdown__options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown__options button {
+  width: 100%;
+  height: 100%;
+}
+
+/* right part Style */
+
+.calculator-sidebar {
+  display: none;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+}
+
+.calculator-sidebar.active {
+  padding: 10px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  transform: translateX(0);
+  position: absolute;
+  top: 35%;
+  left: 1%;
+}
+
+.sidebar__content {
+  height: 100%;
+}
+
+.sidebar__tabs {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+}
+
+.sidebar__tabs button {
+  border: none;
+  background: var(--bg-button);
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  color: var(--text-inverse);
+  font-size: var(--btn-font-size);
+  size: var(--btn-size);
+  font-weight: var(--font-bold);
+}
+.sidebar__tabs button:hover {
+  background: var(--bg-button-hover);
+}

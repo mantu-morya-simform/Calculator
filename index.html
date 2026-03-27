@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A fast and easy-to-use online calculator for basic arithmetic operations like addition, subtraction, multiplication, and division."
+    />
+    <meta
+      name="keywords"
+      content="calculator, online calculator, simple calculator, math tool, arithmetic calculator"
+    />
+    <meta name="author" content="Mantu Morya" />
+    <title>Simple Calculator | Fast & Easy Online Calculator</title>
+    <link rel="icon" href="/assets/icons/calculator-icon.svg" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/responsive/responsive.css" />
+  </head>
+  <body>
+    <main class="app">
+      <article class="calculator">
+        <header class="calculator__header">
+          <div class="heading__wrapper">
+            <h1>Scientific Calculator</h1>
+            <button id="toggleSidebar" class="more__logo__btn">
+              <img
+                class="more__logo"
+                src="./assets/icons/more_logo.svg"
+                alt="more_options_logo"
+                aria-label="more button logo"
+              />
+            </button>
+          </div>
+
+          <input
+            type="text"
+            class="calculator__display"
+            aria-label="Calculator display"
+            placeholder="2+4"
+            readonly
+          />
+        </header>
+
+        <section class="calculator__memory" aria-label="Memory controls">
+          <button type="button">MC</button>
+          <button type="button">MR</button>
+          <button type="button">M+</button>
+          <button type="button">M-</button>
+          <button type="button">MS</button>
+        </section>
+
+        <section class="calculator__modes" aria-label="Calculator modes">
+          <div class="dropdown">
+            <button type="button" class="btn-modes">
+              <img
+                class="trigonometry__logo"
+                src="./assets/icons/trigonometry.svg"
+                alt="trigonometry_options_logo"
+                aria-label="trigonometry button logo"
+              />Trigonometry
+              <img
+                class="drop-down__logo"
+                src="./assets/icons/drop-down.svg"
+                alt="drop-down_logo"
+                aria-label="drop-down logo"
+              />
+            </button>
+            <div class="dropdown__options">
+              <button>sin</button>
+              <button>cos</button>
+              <button>tan</button>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button type="button" class="btn-modes">
+              <img
+                class="functions__logo"
+                src="./assets/icons/functions.svg"
+                alt="functions_options_logo"
+                aria-label="functions button logo"
+              />Function
+              <img
+                class="drop-down__logo"
+                src="./assets/icons/drop-down.svg"
+                alt="drop-down_logo"
+                aria-label="drop-down logo"
+              />
+            </button>
+            <div class="dropdown__options">
+              <button>floor</button>
+              <button>ceil</button>
+              <button>round</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="calculator__keypad" aria-label="Calculator keypad">
+          <!-- Row 1 -->
+          <button>2nd</button>
+          <button>&#960;</button>
+          <!-- π -->
+          <button>e</button>
+          <button class="btn-clear">C</button>
+          <button>&#9003;</button>
+          <!-- ⌫ -->
+
+          <!-- Row 2 -->
+          <button>x<sup>2</sup></button>
+          <button>1/x</button>
+          <button>|x|</button>
+          <button>exp</button>
+          <button>mod</button>
+
+          <!-- Row 3 -->
+          <button><sup>2</sup>&#8730;x</button>
+          <!-- ²√x -->
+          <button>(</button>
+          <button>)</button>
+          <button>n!</button>
+          <button>&#247;</button>
+          <!-- ÷ -->
+
+          <!-- Row 4 -->
+          <button>x<sup>y</sup></button>
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button class="btn-operator">&#215;</button>
+          <!-- × -->
+
+          <!-- Row 5 -->
+          <button>10<sup>x</sup></button>
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button class="btn-operator">&#8722;</button>
+          <!-- − -->
+
+          <!-- Row 6 -->
+          <button>log</button>
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button class="btn-operator">+</button>
+
+          <!-- Row 7 -->
+          <button>ln</button>
+          <button>&#177;</button>
+          <!-- ± -->
+          <button>0</button>
+          <button>.</button>
+          <button class="btn-equals">=</button>
+        </section>
+      </article>
+
+      <aside class="calculator-sidebar">
+        <nav class="sidebar__tabs" aria-label="History and Memory">
+          <button type="button">History</button>
+          <button type="button">Memory</button>
+        </nav>
+        <section class="sidebar__content">
+          <p>No history yet</p>
+        </section>
+      </aside>
+    </main>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
