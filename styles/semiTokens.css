@@ -1,0 +1,25 @@
+:root {
+  /* ===== BACKGROUND ===== */
+  --bg-app: var(--gray-900);
+  --bg-calculator: var(--gray-100);
+  --bg-button: var(--gray-700);
+  --bg-button-hover: var(--gray-600);
+  --bg-operator: var(--blue-500);
+  --bg-danger: var(--red-500);
+
+  /* ===== TEXT ===== */
+  --text-primary: var(--gray-100);
+  --text-secondary: var(--gray-400);
+  --text-inverse: #ffffff;
+
+  /* ===== BORDER ===== */
+  --border-default: var(--gray-700);
+
+  /* ===== BUTTON ===== */
+  --btn-radius: var(--radius-md);
+  --btn-padding: var(--space-3);
+
+  /* ===== DISPLAY ===== */
+  --display-bg: var(--gray-900);
+  --display-text-size: var(--text-display);
+}

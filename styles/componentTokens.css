@@ -1,0 +1,18 @@
+:root {
+  /* Calculator Layout */
+  --calc-width: 320px;
+  --calc-padding: var(--space-4);
+  --calc-gap: var(--space-2);
+
+  /* Display */
+  --display-height: 80px;
+
+  /* Buttons */
+  --btn-size: 60px;
+  --btn-font-size: var(--text-lg);
+
+  /* Special Buttons */
+  --btn-operator-bg: var(--bg-operator);
+  --btn-equals-bg: var(--green-500);
+  --btn-clear-bg: var(--red-500);
+}
