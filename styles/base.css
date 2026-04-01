@@ -11,7 +11,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: var(--space-2);
   background: var(--bg-app);
 }
 
@@ -24,10 +24,10 @@ html {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 100%;
-  column-gap: 20px;
+  column-gap: var(--space-5);
   background: var(--bg-calculator);
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
   position: relative;
 }
 
@@ -44,11 +44,11 @@ html {
 .calculator__header {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .heading__wrapper h1 {
-  font-size: 28px;
+  font-size: var(--text-xl);
 }
 
 .calculator__display {
@@ -56,7 +56,7 @@ html {
   height: 100%;
   font-size: var(--display-text-size);
   color: var(--text-inverse);
-  padding: 10px;
+  padding: var(--space-2);
   border-radius: var(--btn-radius);
   border: none;
   outline: none;
@@ -73,10 +73,10 @@ html {
 
 .calculator__memory,
 .calculator__modes {
-  padding: 5px;
+  padding: var(--space-1);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: var(--space-1);
 }
 
 .calculator__memory button,
@@ -99,12 +99,12 @@ html {
 }
 
 .calculator__keypad {
-  padding: 5px;
+  padding: var(--space-1);
   display: grid;
   grid-template-rows: repeat(7, 1fr);
   grid-template-columns: repeat(5, 1fr);
-  row-gap: 5px;
-  column-gap: 5px;
+  row-gap: var(--space-1);
+  column-gap: var(--space-1);
 }
 
 .calculator__keypad.sidebar-open {
@@ -146,7 +146,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: var(--space-1);
 }
 
 .btn-modes:hover + .dropdown__options {
@@ -192,14 +192,14 @@ html {
 }
 
 .calculator-sidebar.active {
-  padding: 10px;
+  padding: var(--space-2);
   display: flex;
-  gap: 20px;
+  gap: var(--space-5);
   flex-direction: column;
   transform: translateX(0);
   position: absolute;
   top: 35%;
-  left: 1%;
+  padding-left: var(--space-3);
 }
 
 .sidebar__content {
@@ -210,7 +210,7 @@ html {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 5px;
+  gap: var(--space-1);
 }
 
 .sidebar__tabs button {
