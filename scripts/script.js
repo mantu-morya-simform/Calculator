@@ -1,9 +1,13 @@
 import { calculateResult } from "./calculator.js";
+import { evaluateExpression } from "./expression.js";
+
 let toggleBtn = document.querySelector(".more__logo__btn");
 let sideBar = document.querySelector(".calculator-sidebar");
 let calculatorKeypad = document.querySelector(".calculator__keypad");
 let display = document.querySelector(".calculator__display");
 let buttons = document.querySelectorAll(".calculator__keypad > button");
+let modeButtons = document.querySelectorAll(".dropdown__options > button");
+let memoryButtons = document.querySelectorAll(".calculator__memory > button");
 
 /**
  * Toggles the sidebar visibility and adjusts the keypad layout.
@@ -15,6 +19,7 @@ toggleBtn.addEventListener("click", () => {
 
 let expression = "";
 let lastActionWasEquals = false;
+let memoryValue = 0;
 
 /**
  * Appends a character to the current expression and updates the display.
@@ -27,40 +32,168 @@ function appendToExpression(char) {
 }
 
 /**
+ * Replaces the current expression and updates the display.
+ * @param {string} char - The new expression value.
+ */
+function setExpression(char) {
+  expression = char;
+  display.value = expression;
+  lastActionWasEquals = false;
+}
+
+/**
+ * Turns button text into the internal token used by the calculator.
+ * @param {string} value - Button text.
+ * @returns {string}
+ */
+function normalizeButtonValue(value) {
+  return value
+    .replace(/\s+/g, "")
+    .replace("π", "PI")
+    .replace("×", "*")
+    .replace("÷", "/")
+    .replace("−", "-")
+    .replace("⌫", "backspace")
+    .replace("±", "toggle-sign")
+    .replace("√", "sqrt");
+}
+
+function evaluateCurrentExpression() {
+  return expression ? evaluateExpression(expression) : 0;
+}
+
+/**
  * Handles button click events for the calculator keypad.
  */
+function handleButtonClick(value) {
+  const normalizedValue = normalizeButtonValue(value);
+
+  if (lastActionWasEquals && /^[0-9.]$|^PI$|^E$/.test(normalizedValue)) {
+    expression = "";
+  }
+
+  switch (normalizedValue) {
+    case "C":
+      expression = "";
+      display.value = "";
+      lastActionWasEquals = false;
+      break;
+
+    case "backspace":
+      expression = expression.slice(0, -1);
+      display.value = expression;
+      lastActionWasEquals = false;
+      break;
+
+    case "=":
+      expression = calculateResult(expression, display, lastActionWasEquals);
+      lastActionWasEquals = true;
+      break;
+
+    case "*":
+    case "/":
+    case "-":
+    case "+":
+      appendToExpression(normalizedValue);
+      break;
+
+    case "2nd":
+      break;
+
+    case "PI":
+      appendToExpression("PI");
+      break;
+
+    case "e":
+      appendToExpression("E");
+      break;
+
+    case "x2":
+      appendToExpression("^2");
+      break;
+
+    case "1/x":
+      appendToExpression("^(-1)");
+      break;
+
+    case "|x|":
+      appendToExpression("abs(");
+      break;
+
+    case "exp":
+      appendToExpression("exp(");
+      break;
+
+    case "mod":
+      appendToExpression("%");
+      break;
+
+    case "2sqrtx":
+      appendToExpression("sqrt(");
+      break;
+
+    case "n!":
+      appendToExpression("!");
+      break;
+
+    case "xy":
+      appendToExpression("^");
+      break;
+
+    case "10x":
+      appendToExpression("10^");
+      break;
+
+    case "log":
+      appendToExpression("log(");
+      break;
+
+    case "ln":
+      appendToExpression("ln(");
+      break;
+
+    case "toggle-sign":
+      if (expression.startsWith("-")) {
+        expression = expression.slice(1);
+      } else {
+        expression = "-" + expression;
+      }
+      display.value = expression;
+      lastActionWasEquals = false;
+      break;
+
+    case "sin":
+    case "cos":
+    case "tan":
+    case "ten":
+    case "floor":
+    case "floar":
+    case "ceil":
+    case "ceal":
+    case "round":
+      appendToExpression(normalizedValue + "(");
+      break;
+
+    default:
+      appendToExpression(normalizedValue);
+      break;
+  }
+}
+
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    let value = btn.textContent.trim();
+    handleButtonClick(btn.textContent.trim());
+  });
+});
 
-    switch (value) {
-      case "C":
-        expression = "";
-        display.value = "";
-        lastActionWasEquals = false;
-        break;
+modeButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    handleButtonClick(btn.textContent.trim());
+  });
+});
 
-      case "⌫":
-        expression = expression.slice(0, -1);
-        display.value = expression;
-        lastActionWasEquals = false;
-        break;
-
-      case "=":
-        expression = calculateResult(expression, display, lastActionWasEquals);
-        lastActionWasEquals = true;
-        break;
-
-      case "×":
-      case "÷":
-      case "−":
-      case "+":
-        appendToExpression(value);
-        break;
-
-      default:
-        appendToExpression(value);
-        break;
-    }
+memoryButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    handleButtonClick(btn.textContent.trim());
   });
 });
