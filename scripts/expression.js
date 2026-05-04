@@ -3,29 +3,20 @@
  * Supports operators (+, -, *, /, %, ^, !), parentheses,
  * constants (PI, E), and basic math functions.
  */
+
+import { FUNCTIONS } from "./mathConfig.js";
+
 function evaluateExpression(expr) {
   // Clean and normalize the input
   expr = expr
     .replace(/\s+/g, "")
-    .replace(/[×Ã—]/g, "*")
-    .replace(/[÷Ã·]/g, "/")
-    .replace(/[−âˆ’]/g, "-")
+    .replace(/[×]/g, "*")
+    .replace(/[÷]/g, "/")
+    .replace(/[−]/g, "-")
     .replace(/π/g, "PI");
 
-  // Supported functions
-  const functions = {
-    sin: Math.sin,
-    cos: Math.cos,
-    tan: Math.tan,
-    floor: Math.floor,
-    ceil: Math.ceil,
-    round: Math.round,
-    exp: Math.exp,
-    log: Math.log10,
-    ln: Math.log,
-    sqrt: Math.sqrt,
-    abs: Math.abs,
-  };
+  // Use imported functions from single source of truth
+  const functions = FUNCTIONS;
 
   // Operator precedence
   const precedence = {
@@ -166,18 +157,18 @@ function evaluateExpression(expr) {
     // Handle operators
     else if (isOperator(ch)) {
       while (
-        operators.length &&
-        operators.at(-1) !== "(" &&
-        !isFunction(operators.at(-1)) &&
+        operators.length && // stack not empty
+        operators.at(-1) !== "(" && // stop at '(' (respect brackets)
+        !isFunction(operators.at(-1)) && // don't pop functions yet
         ((rightAssociative[ch] &&
-          precedence[operators.at(-1)] > precedence[ch]) ||
+          precedence[operators.at(-1)] > precedence[ch]) || // for '^' → pop only higher
           (!rightAssociative[ch] &&
-            precedence[operators.at(-1)] >= precedence[ch]))
+            precedence[operators.at(-1)] >= precedence[ch])) // for +,-,*,/ → pop higher or equal
       ) {
-        output.push(operators.pop());
+        output.push(operators.pop()); // move operator to output
       }
 
-      operators.push(ch);
+      operators.push(ch); // push current operator
     } else {
       throw new Error(`Unexpected character: ${ch}`);
     }

@@ -1,5 +1,6 @@
 import { calculateResult } from "./calculator.js";
 import { evaluateExpression } from "./expression.js";
+import { FUNCTION_KEYS } from "./mathConfig.js";
 
 let toggleBtn = document.querySelector(".more__logo__btn");
 let sideBar = document.querySelector(".calculator-sidebar");
@@ -70,6 +71,11 @@ function handleButtonClick(value) {
 
   if (lastActionWasEquals && /^[0-9.]$|^PI$|^E$/.test(normalizedValue)) {
     expression = "";
+  }
+
+  if (FUNCTION_KEYS.includes(normalizedValue)) {
+    appendToExpression(normalizedValue + "(");
+    return;
   }
 
   switch (normalizedValue) {
@@ -160,18 +166,6 @@ function handleButtonClick(value) {
       }
       display.value = expression;
       lastActionWasEquals = false;
-      break;
-
-    case "sin":
-    case "cos":
-    case "tan":
-    case "ten":
-    case "floor":
-    case "floar":
-    case "ceil":
-    case "ceal":
-    case "round":
-      appendToExpression(normalizedValue + "(");
       break;
 
     default:
