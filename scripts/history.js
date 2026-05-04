@@ -2,8 +2,8 @@ let historyContainer = document.querySelector(".sidebar__content");
 let history = [];
 
 /**
- * Updates the history display in the sidebar with the current history items.
- * Reverses the order to show the most recent calculations first.
+ * updates the history display in the sidebar with the current history items.
+ * reverses the order to show the most recent calculations first.
  */
 function updateHistory() {
   historyContainer.innerHTML = "";

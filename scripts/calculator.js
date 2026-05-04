@@ -2,7 +2,7 @@ import { evaluateExpression } from "./expression.js";
 import { updateHistory, history } from "./history.js";
 
 /**
- * Calculates the result of the given expression and updates the display and history.
+ * calculates the result of the given expression and updates the display and history.
  * @param {string} expr - The mathematical expression to evaluate.
  * @param {HTMLInputElement} disp - The display element to update with the result.
  * @param {boolean} repeatEquals - True when the user pressed = again without modifying the expression.
