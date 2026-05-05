@@ -7,6 +7,14 @@ let history = [];
  */
 function updateHistory() {
   historyContainer.innerHTML = "";
+
+  if (history.length === 0) {
+    let p = document.createElement("p");
+    p.textContent = "No history yet";
+    historyContainer.appendChild(p);
+    return;
+  }
+
   history
     .slice()
     .reverse()

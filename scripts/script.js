@@ -21,6 +21,23 @@ toggleBtn.addEventListener("click", () => {
 let expression = "";
 let lastActionWasEquals = false;
 let memoryValue = 0;
+let sidebarTabs = document.querySelectorAll(".sidebar__tabs button");
+let sidebarContent = document.querySelector(".sidebar__content");
+let activeSidebarTab = "History";
+
+function updateMemoryDisplay() {
+  sidebarContent.innerHTML = `
+    <p>Memory value: ${memoryValue}</p>
+  `;
+}
+
+function updateSidebarContent() {
+  if (activeSidebarTab === "Memory") {
+    updateMemoryDisplay();
+    return;
+  }
+  updateHistory();
+}
 
 /**
  * Appends a character to the current expression and updates the display.
@@ -89,6 +106,32 @@ function handleButtonClick(value) {
       expression = expression.slice(0, -1);
       display.value = expression;
       lastActionWasEquals = false;
+      break;
+
+    case "MC":
+      memoryValue = 0;
+      updateMemoryDisplay();
+      break;
+
+    case "MR":
+      expression = memoryValue.toString();
+      display.value = expression;
+      lastActionWasEquals = false;
+      break;
+
+    case "M+":
+      memoryValue += evaluateCurrentExpression();
+      updateMemoryDisplay();
+      break;
+
+    case "M-":
+      memoryValue -= evaluateCurrentExpression();
+      updateMemoryDisplay();
+      break;
+
+    case "MS":
+      memoryValue = evaluateCurrentExpression();
+      updateMemoryDisplay();
       break;
 
     case "=":
@@ -191,3 +234,15 @@ memoryButtons.forEach((btn) => {
     handleButtonClick(btn.textContent.trim());
   });
 });
+
+sidebarTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    activeSidebarTab = tab.textContent.trim();
+    sidebarTabs.forEach((button) => button.classList.remove("active"));
+    tab.classList.add("active");
+    updateSidebarContent();
+  });
+});
+
+sidebarTabs[0]?.classList.add("active");
+updateSidebarContent();
