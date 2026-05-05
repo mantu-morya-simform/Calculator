@@ -227,3 +227,7 @@ html {
 .sidebar__tabs button:hover {
   background: var(--bg-button-hover);
 }
+
+.sidebar__tabs button.active {
+  background: var(--bg-button-hover);
+}
