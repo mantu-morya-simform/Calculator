@@ -1,5 +1,6 @@
 import { calculateResult } from "./calculator.js";
 import { evaluateExpression } from "./expression.js";
+import { updateHistory } from "./history.js";
 import { FUNCTION_KEYS } from "./mathConfig.js";
 
 let toggleBtn = document.querySelector(".more__logo__btn");
